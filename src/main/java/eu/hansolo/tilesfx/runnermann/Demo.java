@@ -433,11 +433,13 @@ public class Demo extends Application {
         timeTile = TileBuilder.create()
                               .skinType(SkinType.TIME)
                               .prefSize(TILE_WIDTH, TILE_HEIGHT)
-                              .title("Time Tile")
+                              .title("Duration Tile")
                               .text("Whatever text")
-                              .duration(LocalTime.of(1, 22))
-                              .description("Average reply time")
+                              //.duration(LocalTime.of(1, 22))
+                              .description("Total duration")
+                              .secondsVisible(true)
                               .textVisible(true)
+                              .running(true)
                               .build();
 
         barChartTile = TileBuilder.create()
@@ -855,14 +857,15 @@ public class Demo extends Application {
                                    .description("Description")
                                    .text("Text")
                                    .barColor(Bright.ORANGE_RED)
-                                   .timePeriod(Duration.ofSeconds(30))
+                                   .timePeriod(Duration.ofSeconds(6))
                                     .gradientStops(
-                                            new Stop(0.1, Bright.RED),
-                                            new Stop(0.3, Bright.ORANGE_RED),
-                                            new Stop(0.4, Bright.ORANGE),
-                                            new Stop(0.5, Bright.YELLOW_ORANGE),
-                                            new Stop(0.6, Bright.YELLOW),
-                                            new Stop(0.7, Bright.GREEN_YELLOW),
+                                            new Stop(0.0, Bright.RED),
+                                            new Stop(0.25, Bright.RED),
+                                            new Stop(0.26, Bright.ORANGE),
+                                            new Stop(0.5, Bright.ORANGE),
+                                            new Stop(0.51, Bright.YELLOW),
+                                            new Stop(0.75, Bright.YELLOW),
+                                            new Stop(0.76, Bright.GREEN),
                                             new Stop(1.0, Bright.GREEN))
                                    .onAlarm(e -> System.out.println("Alarm"))
                                    .build();
@@ -1235,7 +1238,7 @@ public class Demo extends Application {
                     ledTile.setActive(!ledTile.isActive());
 
                     if (!countdownTile.isRunning()) {
-                        countdownTile.setTimePeriod(Duration.ofSeconds(30));
+                        countdownTile.setTimePeriod(Duration.ofSeconds(6));
                         countdownTile.setRunning(true);
                     }
 
